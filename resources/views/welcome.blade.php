@@ -35,13 +35,11 @@
                                 <x-nav-link :href="route('home')" :active="request()->routeIs('home')" class="text-[#FF0000] text-base font-semibold">
                                     {{ __('Home') }}
                                 </x-nav-link>
-                                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-[#FF0000] text-base font-semibold">
-                                    {{ __('Review') }}
-                                </x-nav-link>
-                                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-[#FF0000] text-base font-semibold">
+                                <x-nav-link :href="route('menuuser')" :active="request()->routeIs('menuuser')" class="text-[#FF0000] text-base font-semibold">
                                     {{ __('Daftar Menu') }}
                                 </x-nav-link>
                                 <a href="login" class="inline-flex items-center px-3 py-2 text-base font-bold rounded-md text-black bg-[#EFF406] h-1/2">
+                                    <img src="{{ url('/img/wa.png') }}" alt="" class="mr-1">
                                     08213398905
                                 </a>
                             </div>
@@ -61,11 +59,11 @@
                             <p class="text-base leading-[26px] my-[26px]">Melalui laman ini, kami akan menunjukkan menu tersedia yang dapat Anda pesan melalui Kontak WhatsApp yang terlampir</p>
                             <div class="flex gap-[24px]">
                                 <div class="flex gap-2 py-4 px-8 bg-[#EFF406] drop-shadow-xl">
-                                    <a href="#" class="text-white">Order Now</a>
+                                    <a href="https://wa.me/+6281223344470" class="text-white">Order Now</a>
                                     <img src="{{ url('/img/cart.png') }}" class="object-contain">
                                 </div>
                                 <div class="flex gap-2 py-4 px-8 bg-white drop-shadow-xl">
-                                    <a href="#" class="text-[#FF0000]">Lihat Menu</a>
+                                    <a href="/menuuser" class="text-[#FF0000]">Lihat Menu</a>
                                     <img src="{{ url('/img/arrow.png') }}" class="object-contain">
                                 </div>
                             </div>
@@ -114,8 +112,8 @@
                             <div>
                                 <h1 class="text-[32px] font-bold leading[40px]">Kami selalu memprioritaskan penggunaan bahan baku untuk hasil terbaik</h1>
                                 <p class="text-base leading-[28px] my-[24px]">Penyediaan bahan baku merupakan langkah penting yang selalu berada dalam kualitas kontrol kami.</p>
-                                <div class="flex gap-2 py-4 px-8 bg-[#EFF406] drop-shadow-xl w-1/3">
-                                    <a href="#" class="text-[#FF0000]">Lihat Menu</a>
+                                <div class="flex gap-2 py-4 px-8 bg-[#EFF406] drop-shadow-xl w-[36%]">
+                                    <a href="/menuuser" class="text-[#FF0000]">Lihat Menu</a>
                                     <img src="{{ url('/img/arrow.png') }}" class="object-contain">
                                 </div>
                             </div>
@@ -124,8 +122,8 @@
                             <div>
                                 <h1 class="text-[32px] font-bold leading[40px]">Siap untuk melayani setiap kebutuhan konsumsi Anda.</h1>
                                 <p class="text-base leading-[28px] my-[24px]">Komitmen untuk selalu menyediakan kebutuhan konsumsi Anda, kami akan siap melengkapi kebutuhan yang diperlukan. Semua itu akan kami hidangkan dengan hati untuk kepuasaan Anda.</p>
-                                <div class="flex gap-2 py-4 px-8 bg-[#EFF406] drop-shadow-xl w-1/3">
-                                    <a href="#" class="text-[#FF0000]">Lihat Menu</a>
+                                <div class="flex gap-2 py-4 px-8 bg-[#EFF406] drop-shadow-xl w-[26%]">
+                                    <a href="/menuuser" class="text-[#FF0000]">Lihat Menu</a>
                                     <img src="{{ url('/img/arrow.png') }}" class="object-contain">
                                 </div>
                             </div>
@@ -149,6 +147,36 @@
                             <h1 class="text-[36px] font-bold leading-[40px]">Pilihan Menu yang Paling Diminati</h1>
                             <p class="text-base mt-[14px] mb-[58px]">Berikut beberapa pilihan menu yang disukai oleh customer yang sudah mempercayakan kami.</p>
                         </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-20">
+                        @forelse ($menus as $menu)
+                        <div class="w-full">
+                            <img src="{{ url('/images/'.$menu->image) }}" alt="" class="w-full object-x h-[280px] rounded-[10px]">
+                            <div class="text-black">
+                                <div class="my-4">
+                                    <h1 class="text-[18px] font-bold">{{ $menu->name }}</h1>
+                                    <p class="text-base">{{ $menu->type }}</p>
+                                </div>
+                                <h1 class="text-[24px] font-medium">Rp. {{ $menu->price }},-</h1>
+                                <hr class="my-2">
+                                <div class="flex gap-2 py-4 px-8 bg-[#FF0000] drop-shadow-xl">
+                                    <a href="https://wa.me/+6281223344470" class="text-white text-center w-full">Order Now</a>
+                                    <img src="{{ url('/img/cart.png') }}" class="object-contain">
+                                </div>
+                            </div>
+                        </div>
+                        @empty
+
+                        @endforelse
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#EFF406] text-center">
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-[130px] ">
+                    <div class="py-12">
+                        <p>© 2023. JnA Catering. All rights reserved.</p>
                     </div>
                 </div>
             </div>
